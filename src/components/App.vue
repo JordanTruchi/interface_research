@@ -18,7 +18,7 @@ export default {
   },
   data: function () {
     return {
-      delay: 650
+      delay: 700
     };
   },
   watch: {
@@ -43,14 +43,15 @@ export default {
 
 * {
 	margin: 0;
+	font-family: 'Segoe ui';
 }
 
 .moveBackGround {
-	animation: moveBackGround 600ms ease-in-out forwards;
+	animation: moveBackGround 700ms ease-in-out forwards;
 }
 
 .moveBackGroundR {
-	animation: moveBackGroundR 600ms ease-in-out forwards;
+	animation: moveBackGroundR 700ms ease-in-out forwards;
 }
 
 @keyframes moveBackGround {
@@ -83,11 +84,11 @@ export default {
 }
 
 .growFull {
-	animation: growFull 600ms ease-in-out forwards;
+	animation: growFull 700ms ease-in-out forwards;
 }
 
 .growFullR {
-	animation: growFullR 600ms ease-in-out forwards;
+	animation: growFullR 700ms ease-in-out forwards;
 }
 
 @keyframes growFull {
@@ -110,11 +111,11 @@ export default {
 }
 
 .decreaseFull {
-	animation: decreaseFull 600ms ease-in-out forwards;
+	animation: decreaseFull 700ms ease-in-out forwards;
 }
 
 .decreaseFullR {
-	animation: decreaseFullR 600ms ease-in-out forwards;
+	animation: decreaseFullR 700ms ease-in-out forwards;
 }
 
 @keyframes decreaseFull {
@@ -158,9 +159,11 @@ export default {
 
 @keyframes formToSearch {
 	0% {
-		height: 400px;
-		width: 300px;
+		height: 550px;
+		width: 450px;
 		transform: rotate(0deg);
+		right: calc((50vw - 450px - 50px) / 2);
+		top: calc((100vh - 550px - 50px) / 2);
 	}
 
 	100% {
@@ -170,6 +173,8 @@ export default {
 		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 		right: 30%;
 		top: 50px;
+		background: #fff;
+		padding: 0;
 	}
 }
 @keyframes formToSearchR {
@@ -183,10 +188,10 @@ export default {
 	}
 
 	100% {
-		height: 400px;
-		width: 300px;
+		height: 550px;
+		width: 450px;
 		transform: rotate(0deg);
-		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+		box-shadow: 0 3px 37px rgba(0, 0, 0, 0.38);
 	}
 }
 
