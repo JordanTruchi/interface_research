@@ -3,11 +3,23 @@
     ref="test"
     class="fullContain"
   >
-    <div class="leftContain">
-      <div class="overlayLeftContain" />
+    <div
+      ref="leftContain"
+      class="leftContain"
+    >
+      <div
+        ref="overlayLeftContain"
+        class="overlayLeftContain"
+      />
     </div>
-    <div class="containForm">
-      <div class="form">
+    <div
+      ref="containForm"
+      class="containForm"
+    >
+      <div
+        ref="form"
+        class="form"
+      >
         <input
           id="name"
           type="text"
@@ -41,29 +53,53 @@
 export default {
   components: {
   },
+  props: {
+    delay: Number
+  },
   data: function () {
     return {
+      formInput: null
     };
+  },
+  mounted: function () {
+    this.formInput = document.querySelectorAll('.form > input');
   },
   methods: {
     changeRoute () {
       this.$router.push({ name: 'home' });
     },
     enterAnim (done) {
+      this.$refs.test.style.display = 'block';
       this.$refs.test.style.opacity = '1';
-      return done;
+      return done();
     },
     leaveAnim (done) {
-      this.$refs.test.style.opacity = '0';
-      return done;
+      this.$refs.leftContain.classList.remove('growFullR');
+      this.$refs.leftContain.classList.add('growFull');
+
+      this.$refs.overlayLeftContain.classList.remove('moveBackGroundR');
+      this.$refs.overlayLeftContain.classList.add('moveBackGround');
+
+      this.$refs.containForm.classList.remove('decreaseFullR');
+      this.$refs.containForm.classList.add('decreaseFull');
+
+      this.$refs.form.classList.remove('formToSearchR');
+      this.$refs.form.classList.add('formToSearch');
+      console.log(this.formInput);
+      this.formInput.forEach(elem => {
+        elem.classList.remove('opacityInputFormR');
+        elem.classList.add('opacityInputForm');
+      });
+      let that = this;
+      setTimeout(function () {
+        that.$el.style.display = 'none';
+        return done();
+      }, this.delay);
     }
   }
 };
 </script>
 <style lang="scss">
-@import url(//fonts.googleapis.com/css?family=Open+Sans);
-@import url(//fonts.googleapis.com/css?family=Montserrat);
-
 .fullContain {
 	display: flex;
 	width: 100%;
@@ -85,95 +121,6 @@ export default {
 	background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 100%);
 	background-size: 300% 300%;
 	background-position: 50% 50%;
-}
-
-.moveBackGround {
-	animation: moveBackGround 600ms ease-in-out forwards;
-}
-
-.moveBackGroundR {
-	animation: moveBackGroundR 600ms ease-in-out forwards;
-}
-@keyframes moveBackGround {
-	0% {
-		background-position: 50% 50%;
-	}
-
-	50% {
-		background-position: 50% 50%;
-	}
-
-	100% {
-		background-position: 50% 50%;
-		background-size: 100% 100%;
-	}
-}
-@keyframes moveBackGroundR {
-	0% {
-		background-position: 50% 50%;
-		background-size: 100% 100%;
-	}
-
-	50% {
-		background-position: 50% 50%;
-	}
-
-	100% {
-		background-position: 50% 50%;
-	}
-}
-
-.growFull {
-	animation: growFull 600ms ease-in-out forwards;
-}
-
-.growFullR {
-	animation: growFullR 600ms ease-in-out forwards;
-}
-@keyframes growFull {
-	0% {
-		width: 50%;
-	}
-
-	100% {
-		width: 100%;
-	}
-}
-@keyframes growFullR {
-	0% {
-		width: 100%;
-	}
-
-	100% {
-		width: 50%;
-	}
-}
-
-.decreaseFull {
-	animation: decreaseFull 600ms ease-in-out forwards;
-}
-
-.decreaseFullR {
-	animation: decreaseFullR 600ms ease-in-out forwards;
-}
-
-@keyframes decreaseFull {
-	0% {
-		width: 50%;
-	}
-
-	100% {
-		width: 0%;
-	}
-}
-@keyframes decreaseFullR {
-	0% {
-		width: 0%;
-	}
-
-	100% {
-		width: 50%;
-	}
 }
 
 .containForm {
@@ -200,7 +147,7 @@ export default {
 }
 
 .form.formToSearch {
-	animation: formToSearch 600ms ease-in-out forwards, opacityInputForm 600ms 1s ease-in-out forwards;
+	animation: formToSearch 600ms ease-in-out forwards, opacityInputForm 600ms 600ms ease-in-out forwards;
 }
 
 .form.formToSearchR {
@@ -242,67 +189,6 @@ export default {
 	border-radius: 8px;
 	border: none;
 	padding: 0;
-}
-
-.searchBar.opacityInputForm {
-	animation: opacityInputFormR 600ms 600ms ease-in-out forwards;
-}
-
-.searchBar.opacityInputFormR {
-	animation: opacityInputForm 100ms ease-in-out forwards;
-}
-
-@keyframes opacityInputForm {
-	0% {
-		opacity: 1;
-	}
-
-	100% {
-		opacity: 0;
-	}
-}
-@keyframes opacityInputFormR {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-@keyframes formToSearch {
-	0% {
-		height: 400px;
-		width: 300px;
-		transform: rotate(0deg);
-	}
-
-	100% {
-		height: 60px;
-		width: 40%;
-		transform: rotate(180deg);
-		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-		right: 30%;
-		top: 50px;
-	}
-}
-@keyframes formToSearchR {
-	0% {
-		height: 60px;
-		width: 40%;
-		transform: rotate(180deg);
-		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-		right: 30%;
-		top: 50px;
-	}
-
-	100% {
-		height: 400px;
-		width: 300px;
-		transform: rotate(0deg);
-		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-	}
 }
 
 </style>
