@@ -64,8 +64,8 @@ export default {
 	}
 
 	100% {
-		background-position: 50% 50%;
-		background-size: 100% 100%;
+		background-position: 50% 100%;
+		background-size: 100% 120%;
 	}
 }
 @keyframes moveBackGroundR {
@@ -172,7 +172,7 @@ export default {
 		transform: rotate(180deg);
 		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 		right: 30%;
-		top: 50px;
+		top: 100px;
 		background: #fff;
 		padding: 0;
 	}
@@ -192,6 +192,30 @@ export default {
 		width: 450px;
 		transform: rotate(0deg);
 		box-shadow: 0 3px 37px rgba(0, 0, 0, 0.38);
+	}
+}
+
+@keyframes iconSearchMove {
+	0% {
+		top: 115px;
+		left: calc(645px / 6);
+	}
+
+	100% {
+		top: 15px;
+		left: calc(45px / 6);
+	}
+}
+
+@keyframes iconSearchMoveR {
+	100% {
+		top: 115px;
+		left: calc(645px / 6);
+	}
+
+	0% {
+		top: 15px;
+		left: calc(45px / 6);
 	}
 }
 
