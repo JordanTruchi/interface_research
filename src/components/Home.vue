@@ -24,6 +24,9 @@
         <transition-group
           name="staggered-fade"
           tag="ul"
+          appear
+          :css="false"
+
           @before-enter="beforeEnterFilter"
           @enter="enterFilter"
           @leave="leaveFilter"
@@ -31,6 +34,7 @@
           <li
             v-for="(item, index) in list"
             :key="item.msg"
+            class="staggered-fade"
             :data-index="index"
           >
             {{ item.msg }}
@@ -77,6 +81,23 @@ export default {
     },
     leaveAnim (done) {
       this.$el.style.opacity = '0';
+      return done();
+    },
+    beforeEnterFilter (el) {
+      el.classList.add('opacityInputForm');
+    },
+    enterFilter (el, done) {
+      var delay = el.dataset.index * 1000;
+      setTimeout(function () {
+        console.log(el);
+        el.classList.remove('opacityInputForm');
+        el.classList.add('opacityInputFormR');
+        return done();
+      }, delay);
+    },
+    leaveFilter (el, done) {
+      el.style.opacity = '1';
+      return done();
     }
   }
 };
@@ -158,6 +179,14 @@ export default {
 
 .resultsSearchBarState {
 	animation: resultsSearchBarState 700ms ease-in-out forwards;
+}
+
+.staggered-fade.opacityInputFormR {
+	animation: opacityInputFormR 700ms ease-in-out forwards;
+}
+
+.staggered-fade.opacityInputForm {
+	animation: opacityInputForm 700ms ease-in-out forwards;
 }
 
 .containAllResults {

@@ -1,7 +1,7 @@
 {
-  "name": "interface_test_research",
+  "name": "interface_research",
   "version": "1.0.0",
-  "description": "interface_test_research",
+  "description": "interface_test",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
